@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Portfolio — Jeff Bryan Berina C.</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<!-- link external stylesheet (moved from inline <style>) -->
+  <link rel="icon" href="./picture/FrontPage.jpg" type="image/x-icon">
+<link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ===== NAV ===== -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">Jeff Bryan<span>Berina</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects" onclick="alert('The projects not avaible yet since still recovering it.'); return false;">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-blob hero-blob-1"></div>
+  <div class="hero-blob hero-blob-2"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Available for hire</div>
+    <h1 class="hero-name">
+      Hello, I'm<br>
+      <!-- ✏️ CHANGE YOUR NAME HERE -->
+      <span class="highlight">Jeff Bryan Berina C.</span>
+    </h1>
+    <!-- ✏️ CHANGE YOUR TITLE HERE -->
+    <p class="hero-title">Software Engineer &amp; Integration Developer</p>
+    <!-- ✏️ CHANGE YOUR BIO SNIPPET HERE -->
+    <p class="hero-desc">I'm a Boomi Integration & Azure API Developer specializing in scalable integrations and API solutions. I also have experience building websites, focusing on performance and user experience. Based in Manila, Philippines.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">View My Work ↓</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+
+  <!-- =============================================
+       📸 HERO PROFILE PHOTO
+       Replace the div.hero-photo below with:
+       <img src="./your-photo.jpg" class="hero-photo" alt="Your Name">
+       Recommended: square image, min 320×320px
+  ============================================= -->
+  <!-- HERO PROFILE PHOTO — changed to use hero-photo-img -->
+  <div class="hero-photo-wrap">
+    <div class="hero-photo-ring">
+      <div class="hero-photo">
+        <img src="./picture/FrontPage.jpg" class="hero-photo-img" alt="Profile — Jeff Bryan Berina C."> 
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    Scroll to explore
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="about-grid reveal">
+    <div class="about-img-wrap">
+      <!-- =============================================
+           📸 ABOUT SECTION PHOTO
+           Replace this div with your image:
+           <img src="./about-photo.jpg" class="about-img" alt="About Me">
+           Recommended: portrait orientation, min 400×500px
+      ============================================= -->
+      <div class="about-img" style="min-width:400px; min-height:500px; aspect-ratio:4/5; overflow:hidden; border-radius:12px;">
+        <img src="./picture/FrontPage.jpg" class="about-img-img" alt="About — Jeff Bryan Berina C." style="width:100%; height:100%; object-fit:cover; object-position:center; display:block;">
+      </div>
+      <!-- ✏️ Change the label text below -->
+      <div class="about-img-label">2 Years Experience</div>
+      <div class="about-img-accent"></div>
+    </div>
+
+    <div class="about-text">
+      <span class="section-tag">About Me</span>
+      <!-- ✏️ CHANGE YOUR NAME AND BIO BELOW -->
+      <h2 class="section-title">Building modern applications and seamless integrations (Boomi | APIM)<br>experiences with purpose</h2>
+      <p class="about-bio">
+        I'm <strong style="color:var(--text)"> Jeff </strong>,I’m a Full Stack Developer with a strong focus on APIs and system integrations.
+Based in Manila, Philippines, I work with Boomi and APIM to build connected, scalable, and modern digital solutions.
+      </p>
+      <p class="about-bio">
+       When I’m not at work, I enjoy exploring new programming languages, spending time outdoors, and playing chess.
+      </p>
+      <!-- ✏️ CHANGE YOUR STATS BELOW -->
+      <div class="stats-row">
+        <div class="stat"><div class="stat-num">2</div><div class="stat-label">Projects Completed</div></div>
+        <div class="stat"><div class="stat-num">2</div><div class="stat-label">Years Experience</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SKILLS ===== -->
+<section id="skills">
+  <div class="reveal">
+    <span class="section-tag">What I Know</span>
+    <h2 class="section-title">Skills &amp; Technologies</h2>
+    <p class="section-subtitle">A curated set of tools and technologies I work with to bring ideas to life.</p>
+  </div>
+  <!-- ✏️ ADD / REMOVE / EDIT SKILL CARDS BELOW -->
+  <div class="skills-grid reveal">
+    <div class="skill-card">
+      <div class="skill-icon">⚛️</div>
+      <div class="skill-name">Frontend</div>
+      <p style="color:var(--muted);font-size:.875rem">Building responsive, accessible, and performant user interfaces.</p>
+      <div class="skill-tags">
+        <span class="skill-tag">React</span><span class="skill-tag">TypeScript</span>
+        <span class="skill-tag">Next.js</span><span class="skill-tag">Tailwind CSS</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🛠</div>
+      <div class="skill-name">Backend</div>
+      <p style="color:var(--muted);font-size:.875rem">Designing APIs and services that are scalable and maintainable.</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Node.js</span><span class="skill-tag">Express</span>
+        <span class="skill-tag">Python</span><span class="skill-tag">REST / GraphQL</span>
+         <span class="skill-tag">Java</span><span class="skill-tag">Spring Boot / GraphQL</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🗄️</div>
+      <div class="skill-name">Databases</div>
+      <p style="color:var(--muted);font-size:.875rem">Structuring data models for performance and reliability.</p>
+      <div class="skill-tags">
+        <span class="skill-tag">PostgreSQL</span><span class="skill-tag">MongoDB</span>
+        <span class="skill-tag">SQL</span><span class="skill-tag">mySQL/Microsoft SQL Server</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">☁️</div>
+      <div class="skill-name">DevOps &amp; Cloud</div>
+      <p style="color:var(--muted);font-size:.875rem">Deploying and managing infrastructure in the cloud.</p>
+      <div class="skill-tags">
+        <span class="skill-tag">AWS</span><span class="skill-tag">Docker</span>
+        <span class="skill-tag">CI/CD</span><span class="skill-tag">Azure pipelines</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🎨</div>
+      <div class="skill-name">Design</div>
+      <p style="color:var(--muted);font-size:.875rem">Prototyping and designing with a developer-first mindset.</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Figma</span><span class="skill-tag">Canvas</span>
+        <span class="skill-tag">UI/UX</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🧰</div>
+      <div class="skill-name">Tools</div>
+      <p style="color:var(--muted);font-size:.875rem">Everyday tools that keep my workflow efficient and organized.</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Git</span><span class="skill-tag">VS Code</span>
+        <span class="skill-tag">Jira</span><span class="skill-tag">Linux</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🧠</div>
+      <div class="skill-name">Soft Skills</div>
+      <p style="color:var(--muted);font-size:.875rem">Everyday skills that help me collaborate effectively and solve problems creatively.</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Communication</span><span class="skill-tag">Client-facing</span>
+        <span class="skill-tag">Documentation</span><span class="skill-tag">Teamwork</span>
+        <span class="skill-tag">Adaptability</span><span class="skill-tag">Time management</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+
+
+<!-- Click handlers for project links — show a professional placeholder message -->
+
+
+<!-- ===== EXPERIENCE ===== -->
+<section id="experience">
+  <div class="reveal">
+    <span class="section-tag">Career</span>
+    <h2 class="section-title">Work Experience</h2>
+    <p class="section-subtitle">Where I've worked and what I've built.</p>
+  </div>
+  <!-- ✏️ EDIT / ADD TIMELINE ITEMS BELOW -->
+  <div class="timeline reveal">
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <!-- ✏️ Change period, role, company, and description -->
+      <div class="tl-period">2024 — Present</div>
+      <div class="tl-role">Software Engineer Analyst/Integration Developer</div>
+      <div class="tl-company">Accenture · Full-time · Manila, PH</div>
+      <div class="tl-desc">Currently working at Accenture as an Integration Developer, specializing in Boomi workflows and Azure APIM to connect enterprise systems efficiently and deliver seamless API solutions.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-period">2023 — 2024</div>
+      <div class="tl-role">ATCP Salesforce Developer/Administration </div>
+      <div class="tl-company">Accenture · Internship · Remote</div>
+      <div class="tl-desc">Internship at ATCP as a Salesforce Developer/Administrator, focusing on workflow customization, automation, and report/dashboard creation to support business operations and improve efficiency.</div>
+    </div>
+
+ 
+  </div>
+</section>
+
+<!-- ===== EDUCATION ===== -->
+<section id="education">
+  <div class="reveal">
+    <span class="section-tag">Academics</span>
+    <h2 class="section-title">Education</h2>
+    <p class="section-subtitle">My academic background and certifications.</p>
+  </div>
+  <!-- ✏️ EDIT / ADD EDUCATION CARDS BELOW -->
+  <div class="edu-grid reveal">
+
+    <div class="edu-card">
+      <div class="edu-icon">🎓</div>
+      <!-- ✏️ Change degree, school, year, and description -->
+      <div class="edu-degree">B.S. Information Technology</div>
+      <div class="edu-school">STI Global City</div>
+      <div class="edu-year">2021 – 2024</div>
+      <div class="edu-desc">Graduated with honors (CUM LAUDE). Focused on software engineering, algorithms, and data structures. Thesis on real-time collaborative systems.</div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-icon">📜</div>
+      <div class="edu-degree">Boomi certified</div>
+      <div class="edu-school">Boomi</div>
+      <div class="edu-year">2024</div>
+      <div class="edu-desc">Associate-level, certification covering Boomi workflows and integration best practices.</div>
+    </div>
+
+    <div class="edu-card">
+      <div class="edu-icon">🏅</div>
+      <div class="edu-degree">AWS Solutions Architect</div>
+      <div class="edu-school">AWS Accenture Training</div>
+      <div class="edu-year">2024</div>
+      <div class="edu-desc">Professional certificate covering advanced React patterns, UX design principles, and modern JavaScript.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="contact-inner reveal">
+    <div class="contact-info">
+      <span class="section-tag">Let's Talk</span>
+      <h2>Get In Touch</h2>
+      <!-- ✏️ Change the contact description -->
+      <p>I'm currently open to new opportunities. Whether you have a project in mind or just want to say hi — my inbox is always open.</p>
+      <div class="contact-links">
+        <!-- ✏️ Replace href values with your real links / email -->
+        <a href="mailto:you@email.com" class="contact-link">
+          <span class="contact-link-icon">✉️</span> you@email.com
+        </a>
+        <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">
+          <span class="contact-link-icon">💼</span> linkedin.com/in/yourprofile
+        </a>
+        <a href="https://github.com/yourusername" class="contact-link" target="_blank">
+          <span class="contact-link-icon">🐙</span> github.com/yourusername
+        </a>
+        <a href="tel:+63000000000" class="contact-link">
+          <span class="contact-link-icon">📞</span> +63 000 000 0000
+        </a>
+      </div>
+    </div>
+
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="Juan" required/>
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="dela Cruz" required/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="juan@example.com" required/>
+      </div>
+      <div class="form-group">
+        <label>Subject</label>
+        <input type="text" placeholder="Project Inquiry"/>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Tell me about your project or opportunity…" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="align-self:flex-start">Send Message →</button>
+    </form>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <!-- ✏️ Change the name and year -->
+  <div class="footer-copy">© 2026 White. Designed &amp; built with ❤️</div>
+  <div class="footer-socials">
+    <!-- ✏️ Replace # with your real social URLs -->
+    <a href="#" class="social-btn" title="GitHub">⌥</a>
+    <a href="https://www.linkedin.com/public-profile/settings/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3BR6DVFuJpTBKahUwDi8IeLg%3D%3D" class="social-btn" title="LinkedIn" target="_blank" rel="noopener noreferrer">in</a>
+    <a href="#" class="social-btn" title="Twitter/X">𝕏</a>
+    <a href="#" class="social-btn" title="Email">✉</a>
+  </div>
+</footer>
+
+<script>
+  // ── CURSOR ──
+  const cursor = document.getElementById('cursor');
+  const ring   = document.getElementById('cursorRing');
+  let rx = 0, ry = 0, mx = 0, my = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx+'px'; cursor.style.top = my+'px'; });
+  (function animRing(){
+    rx += (mx - rx) * .12;
+    ry += (my - ry) * .12;
+    ring.style.left = rx+'px'; ring.style.top = ry+'px';
+    requestAnimationFrame(animRing);
+  })();
+  document.querySelectorAll('a,button,.skill-card,.project-card,.edu-card').forEach(el => {
+    el.addEventListener('mouseenter', () => { ring.style.width='60px'; ring.style.height='60px'; ring.style.borderColor='rgba(0,229,255,.5)'; });
+    el.addEventListener('mouseleave', () => { ring.style.width='36px'; ring.style.height='36px'; ring.style.borderColor='var(--accent)'; });
+  });
+
+  // ── NAV scroll ──
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // ── SCROLL REVEAL ──
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── CONTACT FORM ──
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type=submit]');
+    btn.textContent = '✓ Message Sent!';
+    btn.style.background = '#00e5a0';
+    setTimeout(() => { btn.textContent = 'Send Message →'; btn.style.background = ''; e.target.reset(); }, 3000);
+  }
+
+  // ── Active nav link highlight on scroll ──
+  const sections = document.querySelectorAll('section[id]');
+  const navAs    = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+    navAs.forEach(a => { a.style.color = a.getAttribute('href') === '#'+cur ? 'var(--accent)' : ''; });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+name: Auto Increment Branch and PR
+
+on:
+    push:
+        branches:
+            - DEV
+    workflow_dispatch:
+
+permissions:
+    contents: write
+    pull-requests: write
+    statuses: write
+
+jobs:
+    create-branch-and-pr:
+        if: ${{ github.actor != 'github-actions[bot]' }}
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository (on DEV branch)
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+                  token: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Get next branch number (using Tags for persistence)
+              id: next
+              run: |
+                  LAST_TAG=$(git ls-remote --tags origin "ci-cd-tag-*" \
+                    | awk -F'ci-cd-tag-' '{print $2}' \
+                    | sed 's/\r$//' \
+                    | sort -V \
+                    | tail -n1)
+
+                  if [ -z "$LAST_TAG" ]; then
+                    NEXT_NUM=1
+                  else
+                    NEXT_NUM=$((10#$LAST_TAG + 1))
+                  fi
+
+                  NEXT_BRANCH=$(printf "ci-cd-%05d" "$NEXT_NUM")
+                  NEXT_TAG_NAME=$(printf "ci-cd-tag-%05d" "$NEXT_NUM")
+
+                  echo "NEXT_BRANCH=$NEXT_BRANCH" >> "$GITHUB_ENV"
+                  echo "NEXT_TAG_NAME=$NEXT_TAG_NAME" >> "$GITHUB_ENV"
+                  echo "Next branch: $NEXT_BRANCH"
+                  echo "New tag will be: $NEXT_TAG_NAME"
+
+            - name: Commit, create branch, push, and tag
+              env:
+                  NEXT_BRANCH: ${{ env.NEXT_BRANCH }}
+                  NEXT_TAG_NAME: ${{ env.NEXT_TAG_NAME }}
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  git config user.name "github-actions[bot]"
+                  git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+                  git checkout -b "${{ env.NEXT_BRANCH }}"
+                  git commit -m "CI/CD: Auto-increment branch trigger for build ${{ env.NEXT_BRANCH }}" || echo "No changes to commit"
+
+                  git tag "${{ env.NEXT_TAG_NAME }}"
+                  git push --set-upstream origin "${{ env.NEXT_BRANCH }}"
+                  git push origin "${{ env.NEXT_TAG_NAME }}"
+
+            - name: Create Pull Request to main (via REST API) — skip if exists
+              env:
+                  NEXT_BRANCH: ${{ env.NEXT_BRANCH }}
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  REPO: ${{ github.repository }}
+              run: |
+                  OWNER=$(echo "$REPO" | cut -d'/' -f1)
+
+                  existing=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+                    "https://api.github.com/repos/$REPO/pulls?head=$OWNER:$NEXT_BRANCH&base=main&state=open" \
+                    | jq -r '.[0].html_url // empty')
+
+                  if [ -n "$existing" ]; then
+                    echo "Open PR already exists: $existing"
+                    exit 0
+                  fi
+
+                  PR_TITLE="Auto PR from $NEXT_BRANCH"
+                  PR_BODY="Automatically created pull request from **$NEXT_BRANCH** to **main** branch.\n\nThis PR is automatically created to promote changes from DEV to main.\nPlease review and merge."
+
+                  payload=$(jq -n --arg t "$PR_TITLE" --arg h "$NEXT_BRANCH" --arg b "$PR_BODY" \
+                    '{title:$t, head:$h, base:"main", body:$b}')
+
+                  resp=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+                    -H "Accept: application/vnd.github+json" \
+                    -d "$payload" "https://api.github.com/repos/$REPO/pulls")
+
+                  echo "$resp" | jq -r '.html_url, .message' || true
+
+            - name: Annotation reminder (no PR comment)
+              if: startsWith(github.event.head_commit.message, 'Merge pull request')
+              env:
+                  BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+              run: |
+                  echo "::warning::✅ Feature branch '${BRANCH_NAME}' was merged into main branch."
+                  echo "::warning::🧹 Reminder: Delete Create-New-Branch if it's no longer needed to keep the repository clean."

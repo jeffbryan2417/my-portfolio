@@ -1,0 +1,40 @@
+name: Auto Delete Temporary Branch
+
+on:
+    # Ang workflow na ito ay tatakbo kapag may Pull Request event na NAKASARA
+    pull_request:
+        types:
+            - closed
+
+permissions:
+    contents: write # Kailangan ng 'write' permission para burahin ang branch
+
+jobs:
+    delete-branch:
+        # Ito ay tatakbo LAMANG kung: 1) Na-merge ang PR AT 2) Ang branch ay nagsisimula sa 'ci-cd-'
+        if: github.event.pull_request.merged == true && startsWith(github.head_ref, 'ci-cd-')
+        runs-on: ubuntu-latest
+        steps:
+            - name: Delete Merged Temporary Branch
+              uses: actions/github-script@v6
+              with:
+                  script: |
+                      const headRef = process.env.HEAD_REF;
+                      const branchName = headRef.replace('refs/heads/', '');
+
+                      console.log(`Attempting to delete branch: ${branchName}`);
+
+                      try {
+                        // Gamitin ang GitHub API para burahin ang head branch
+                        await github.rest.git.deleteRef({
+                          owner: context.repo.owner,
+                          repo: context.repo.repo,
+                          ref: `heads/${branchName}`, 
+                        });
+                        console.log(`Successfully deleted branch: ${branchName}`);
+                      } catch (error) {
+                        console.log(`Branch ${branchName} already deleted or could not be deleted.`);
+                        console.error(error);
+                      }
+              env:
+                  HEAD_REF: ${{ github.event.pull_request.head.ref }}
